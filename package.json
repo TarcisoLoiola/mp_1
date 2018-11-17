@@ -1,0 +1,34 @@
+{
+  "name": "mp_s",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-promise-router": "^3.0.3",
+    "joi": "^14.0.6",
+    "jsonwebtoken": "^8.4.0",
+    "moment": "^2.22.2",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.4",
+    "nodemon": "^1.18.6",
+    "sequelize": "^4.41.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TarcisoLoiola/mp_s.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TarcisoLoiola/mp_s/issues"
+  },
+  "homepage": "https://github.com/TarcisoLoiola/mp_s#readme"
+}
