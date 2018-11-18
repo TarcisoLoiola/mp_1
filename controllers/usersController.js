@@ -2,6 +2,15 @@ const JWT = require('jsonwebtoken')
 const moment = require('moment')
 const db = require('../models');
 
+signToken = (id) => {
+    return JWT.sign({
+        iss: 'CodeWorkr',
+        sub: id,
+        iat: new Date().getTime(),
+        exp: new Date().setDate(new Date().getDate() + 1)
+    }, 'newUserAuth')
+}
+
 module.exports = {
     signUp: async(req, res, next) => {
         const {username, email, password, phone} = req.value.body
@@ -14,31 +23,19 @@ module.exports = {
             })
 
         const newUser = {username, email, password, phone}
-
-        // const token = JWT.sign({
-        //     iss: 'CodeWorkr',
-        //     sub: newUser.id,
-        //     iat: new Date().getTime(),
-        //     exp: new Date().setDate(new Date().getDate() + 1)
-        // }, 'newUserAuth')
+        
 
         db.users
         .create(newUser)
             .then( (newUser, created) => {
-                // res.status(200).json({
-                //     data: newUser,
-                //     token: token,
-                //     code: 200,
-                //     response: 'User created'
-                // })
-                const token = JWT.sign({
-                    iss: 'CodeWorkr',
-                    sub: newUser.id,
-                    iat: new Date().getTime(),
-                    exp: new Date().setDate(new Date().getDate() + 1)
-                }, 'newUserAuth')
-                
-                console.log('token')
+                const { id } = newUser.dataValues
+                const token = signToken(id)
+                res.status(200).json({
+                    data: newUser,
+                    token,
+                    code: 200,
+                    response: 'User created'
+                })
             })
             .catch(error => res.json(error))
     },

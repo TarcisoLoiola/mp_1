@@ -21,7 +21,4 @@ router.route('/all')
 router.route('/delete/:id')
 .get(UsersController.delete)
 
-router.route('/delete/all/users')
-.get(UsersController.deleteAll)
-
 module.exports = router
